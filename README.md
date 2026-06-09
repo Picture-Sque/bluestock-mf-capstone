@@ -1,100 +1,171 @@
-# Bluestock Mutual Fund Analytics Platform
+# 📈 Bluestock Mutual Fund Analytics Platform
 
-## Overview
+## 🚀 Project Overview
 
-This project was developed as part of the Bluestock Data Analyst Internship assessment.
+The **Bluestock Mutual Fund Analytics Platform** is an end-to-end fintech analytics solution developed as part of the **Bluestock Data Analyst Internship Capstone Project**.
 
-The objective is to build a complete Mutual Fund Analytics Platform by performing:
+The platform ingests, cleans, validates, stores, analyzes, and visualizes mutual fund industry data to help investors, analysts, and financial institutions make data-driven investment decisions.
 
-* Data ingestion
-* Data cleaning and validation
-* SQLite database design
-* ETL pipeline development
-* SQL analytics
-* Data documentation
-
-The project uses mutual fund datasets containing fund information, NAV history, investor transactions, scheme performance metrics, SIP inflows, and AUM statistics.
+The project combines **Data Engineering**, **SQL Analytics**, **Financial Risk Analysis**, **Business Intelligence**, and **Advanced Analytics** into a single integrated workflow.
 
 ---
 
-## Project Structure
+## 🎯 Business Problem
+
+The Indian Mutual Fund industry has witnessed significant growth, with increasing investor participation, rising SIP inflows, and expanding Assets Under Management (AUM).
+
+However, investors often face challenges such as:
+
+* Fragmented fund data across multiple sources
+* Difficulty comparing fund performance
+* Limited visibility into risk-adjusted returns
+* Lack of investor behavior analytics
+* Absence of unified dashboards for decision-making
+
+This project addresses these challenges by creating a centralized analytics platform for mutual fund data.
+
+---
+
+## 📊 Project Objectives
+
+### Data Engineering
+
+* Build a robust ETL pipeline
+* Clean and validate financial datasets
+* Create a structured analytics database
+
+### Financial Analytics
+
+* Calculate CAGR
+* Compute Sharpe Ratio
+* Compute Sortino Ratio
+* Calculate Alpha and Beta
+* Measure Maximum Drawdown
+* Benchmark funds against market indices
+
+### Investor Analytics
+
+* Analyze investor demographics
+* Study transaction behavior
+* Evaluate SIP participation trends
+* Perform cohort analysis
+
+### Business Intelligence
+
+* Build an interactive Power BI dashboard
+* Enable fund-level filtering and exploration
+* Generate actionable insights for stakeholders
+
+---
+
+## 🏗️ System Architecture
+
+Raw Data Sources
+↓
+Data Ingestion
+↓
+Data Cleaning & Validation
+↓
+SQLite Data Warehouse
+↓
+Performance & Risk Analytics
+↓
+Advanced Analytics
+↓
+Power BI Dashboard
+↓
+Investor Insights & Reporting
+
+---
+
+## 📂 Project Structure
 
 ```text
-BLUESTOCK_MF_CAPSTONE/
+bluestock-mf-capstone/
 
+├── dashboard/
+│   ├── bluestock_mf_dashboard.pbix
+│   ├── Dashboard.pdf
+│   └── screenshots/
+│
 ├── data/
 │   ├── raw/
 │   └── processed/
 │
 ├── notebooks/
+│   ├── 01_data_ingestion.ipynb
+│   ├── 03_EDA_Analysis.ipynb
+│   ├── 04_performance_analytics.ipynb
+│   └── 05_advanced_analytics.ipynb
+│
+├── outputs/
 │
 ├── reports/
 │
 ├── scripts/
-│   ├── clean_nav_history.py
-│   ├── clean_transactions.py
-│   ├── clean_performance.py
-│   ├── load_database.py
-│   └── update_database.py
 │
 ├── sql/
 │   ├── schema.sql
 │   └── queries.sql
 │
 ├── data_dictionary.md
-├── README.md
 ├── requirements.txt
-└── bluestock_mf.db
+└── README.md
 ```
 
 ---
 
-## Datasets Used
+## 📚 Datasets Used
 
-| Dataset                      | Description                    |
-| ---------------------------- | ------------------------------ |
-| 01_fund_master.csv           | Mutual fund master information |
-| 02_nav_history.csv           | Historical NAV records         |
-| 03_aum_by_fund_house.csv     | Assets under Management data   |
-| 04_monthly_sip_inflows.csv   | SIP inflow statistics          |
-| 05_category_inflows.csv      | Category-wise inflows          |
-| 06_industry_folio_count.csv  | Industry folio statistics      |
-| 07_scheme_performance.csv    | Performance and risk metrics   |
-| 08_investor_transactions.csv | Investor transaction records   |
-| 09_portfolio_holdings.csv    | Portfolio holdings             |
-| 10_benchmark_indices.csv     | Benchmark index history        |
+| Dataset               | Description                              |
+| --------------------- | ---------------------------------------- |
+| Fund Master           | Mutual fund metadata and classifications |
+| NAV History           | Historical Net Asset Value records       |
+| AUM Data              | Assets Under Management by fund house    |
+| SIP Inflows           | Monthly SIP statistics                   |
+| Category Inflows      | Fund category-wise inflows               |
+| Folio Counts          | Industry investor participation          |
+| Scheme Performance    | Risk and return metrics                  |
+| Investor Transactions | Investor transaction history             |
+| Portfolio Holdings    | Equity holdings of schemes               |
+| Benchmark Indices     | Market benchmark performance             |
 
----
+### Project Scale
 
-## Data Cleaning Performed
-
-### NAV History
-
-* Converted date column to datetime
-* Sorted by AMFI code and date
-* Applied forward-fill logic
-* Removed duplicate records
-* Validated NAV values
-
-### Investor Transactions
-
-* Standardized transaction types
-* Validated transaction amounts
-* Converted dates
-* Validated KYC status values
-
-### Scheme Performance
-
-* Validated numeric performance metrics
-* Checked expense ratio ranges
-* Flagged Sharpe ratio anomalies
-* Removed duplicate records
+* 40 Mutual Fund Schemes
+* 46,000+ NAV Records
+* 32,000+ Investor Transactions
+* 4+ Years of Historical Data
+* 10 Integrated Datasets
 
 ---
 
-## Database Design
+## ⚙️ ETL Pipeline
 
-A star schema was implemented using SQLite.
+### Data Ingestion
+
+* Imported all project datasets
+* Retrieved live NAV data using APIs
+* Validated AMFI scheme codes
+
+### Data Cleaning
+
+* Date standardization
+* Missing value treatment
+* Duplicate removal
+* Transaction validation
+* NAV consistency checks
+* Performance metric validation
+
+### Database Loading
+
+* SQLite star-schema architecture
+* Fact and dimension tables
+* Analytical SQL querying support
+
+---
+
+## 🗄️ Database Design
 
 ### Dimension Tables
 
@@ -111,35 +182,187 @@ A star schema was implemented using SQLite.
 
 ---
 
-## Key Analytical Queries
+## 📈 Exploratory Data Analysis
 
-1. Top 5 funds by AUM
-2. Average NAV per month
-3. SIP Year-over-Year growth
-4. Transactions by state
-5. Funds with expense ratio below 1%
-6. Top funds by Sharpe ratio
-7. Top funds by 3-year return
-8. Average investment by age group
-9. KYC status distribution
-10. Transaction type distribution
+The project includes extensive EDA with 15+ visualizations.
+
+### Key Analysis Areas
+
+* NAV trend analysis
+* AUM growth trends
+* SIP inflow trends
+* Category-wise inflows
+* Investor demographics
+* Geographic investment patterns
+* Folio growth analysis
+* Sector allocation analysis
+* Correlation analysis among funds
 
 ---
 
-## Technologies Used
+## 📉 Performance & Risk Analytics
+
+### Return Metrics
+
+* Daily Returns
+* Annualized Returns
+* CAGR (1Y / 3Y)
+
+### Risk Metrics
+
+* Sharpe Ratio
+* Sortino Ratio
+* Alpha
+* Beta
+* Maximum Drawdown
+* Tracking Error
+
+### Fund Ranking Model
+
+Composite Fund Score:
+
+* 30% Return Ranking
+* 25% Sharpe Ranking
+* 20% Alpha Ranking
+* 15% Expense Ratio Ranking
+* 10% Drawdown Ranking
+
+---
+
+## 🔬 Advanced Analytics
+
+### Value at Risk (VaR)
+
+Calculated historical 95% VaR for each scheme.
+
+### Conditional VaR (CVaR)
+
+Measured expected losses beyond the VaR threshold.
+
+### Cohort Analysis
+
+Investor behavior segmented by investment cohorts.
+
+### SIP Continuity Analysis
+
+Identified investors at risk of SIP discontinuation.
+
+### Fund Recommendation Engine
+
+Generated fund recommendations based on investor risk appetite.
+
+### Sector Concentration Analysis
+
+Calculated Herfindahl-Hirschman Index (HHI) for portfolio concentration assessment.
+
+---
+
+## 📊 Interactive Power BI Dashboard
+
+The dashboard contains four fully interactive pages.
+
+### Page 1 — Industry Overview
+
+* Industry AUM trends
+* SIP growth trends
+* Fund house comparison
+* Key industry KPIs
+
+### Page 2 — Fund Performance
+
+* Risk vs Return analysis
+* Fund scorecard
+* Performance benchmarking
+
+### Page 3 — Investor Analytics
+
+* State-wise investment patterns
+* Age-group analysis
+* Transaction type distribution
+* Investor behavior insights
+
+### Page 4 — SIP & Market Trends
+
+* SIP growth analysis
+* Category inflows
+* Market trend monitoring
+
+---
+
+## 🏆 Key Insights
+
+* SBI Mutual Fund emerged as the largest AMC by AUM.
+* Equity-oriented funds generated stronger long-term returns than debt-oriented funds.
+* The 26–35 age group contributed the highest investment volume.
+* SIP inflows showed consistent growth throughout the analysis period.
+* Several schemes delivered superior risk-adjusted returns despite moderate absolute returns.
+* Fund performance varied significantly across categories and risk profiles.
+
+---
+
+## 🛠️ Technologies Used
+
+### Programming & Analytics
 
 * Python
 * Pandas
+* NumPy
+
+### Database
+
 * SQLite
 * SQLAlchemy
 * SQL
-* Git
+
+### Visualization
+
+* Power BI
+* Matplotlib
+* Seaborn
+
+### Development
+
+* Jupyter Notebook
 * VS Code
+* Git & GitHub
 
 ---
 
-## Author
+## ▶️ How to Run
 
-Krishnadas PS
+Install dependencies:
 
-Bluestock Data Analyst Internship Project
+```bash
+pip install -r requirements.txt
+```
+
+Run data processing scripts:
+
+```bash
+python scripts/data_ingestion.py
+python scripts/load_database.py
+```
+
+Open:
+
+```text
+dashboard/bluestock_mf_dashboard.pbix
+```
+
+to explore the interactive dashboard.
+
+---
+
+## 👨‍💻 Author
+
+**Krishnadas PS**
+
+Data Analyst Intern Candidate
+
+Bluestock Fintech Capstone Project
+
+---
+
+## Disclaimer
+
+This project was created for educational and internship evaluation purposes. Mutual fund data used in the project is sourced from publicly available datasets and APIs. The platform is intended for analytics and learning purposes only and does not constitute financial advice.
